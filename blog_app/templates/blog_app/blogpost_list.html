@@ -1,0 +1,126 @@
+<h2>All posts:</h2>
+{% if crazy_thing %}
+{{crazy_thing}}
+{% endif %}
+<ul class="post-list">
+    {% for blogpost in page_obj %}
+    <li class="post-item">
+        <a href="{{ blogpost.get_absolute_url }}" class="post-link">{{ blogpost.title }}</a>
+        {% if blogpost.owner == user %}
+        (
+            <a href="{% url 'blog_app:update_post' blogpost.id %}" class="edit-link">Edit</a> |
+            <a href="{% url 'blog_app:delete_post' blogpost.id %}" class="delete-link">Delete</a>
+        )
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% include 'blog_app/pagination.html' with page=page_obj %}
+
+<style>
+   /* Стилі для заголовків постів */
+   .post-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+   }
+
+   .post-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   }
+
+   .post-link {
+      font-size: 18px;
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+   }
+
+   .post-link:hover {
+      color: #0056b3;
+      text-decoration: underline;
+   }
+
+   /* Стилі для кнопок Edit і Delete */
+   .edit-link, .delete-link {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin: 0 5px;
+   }
+
+   .edit-link {
+      background-color: #4CAF50; /* Зелений колір для редагування */
+   }
+
+   .edit-link:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+   }
+
+   .delete-link {
+      background-color: #f44336; /* Червоний для Delete */
+   }
+
+   .delete-link:hover {
+      background-color: #e53935;
+      transform: scale(1.05);
+   }
+
+   /* Стилі для пагінації */
+   .pagination {
+      margin-top: 20px;
+      text-align: center;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+   }
+
+   .step-links a {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px;
+   }
+
+   .step-links a:hover {
+      text-decoration: underline;
+   }
+
+   .current {
+      font-weight: bold;
+      color: #555;
+   }
+
+   /* Оптимізація для різних пристроїв */
+   @media (max-width: 768px) {
+      .pagination {
+         font-size: 14px;
+      }
+
+      .edit-link, .delete-link {
+         font-size: 12px;
+         padding: 4px 8px;
+      }
+   }
+
+   /* Стилі для відображення повідомлення crazy_thing */
+   .crazy-thing {
+      margin-top: 20px;
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+   }
+
+</style>

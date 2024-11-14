@@ -1,0 +1,76 @@
+<h2>Update Post</h2>
+
+<form method="post" class="update-form">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <input type="submit" value="Update" class="submit-button">
+</form>
+
+<style>
+   /* Стилі для форми */
+   .update-form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   }
+
+   /* Стилі для полів форми */
+   .update-form p {
+      margin-bottom: 15px;
+      font-size: 16px;
+   }
+
+   .update-form input[type="text"],
+   .update-form textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+   }
+
+   /* Фокус на полях форми */
+   .update-form input[type="text"]:focus,
+   .update-form textarea:focus {
+      border-color: #007bff;
+      outline: none;
+   }
+
+   /* Кнопка "Update" */
+   .submit-button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #4CAF50; /* Зелений для кнопки */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+   }
+
+   .submit-button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+   }
+
+   .submit-button:active {
+      transform: scale(1);
+   }
+
+   /* Додаткові стилі для мобільних пристроїв */
+   @media (max-width: 768px) {
+      .update-form {
+         padding: 15px;
+      }
+
+      .submit-button {
+         font-size: 14px;
+         padding: 8px 16px;
+      }
+   }
+</style>
